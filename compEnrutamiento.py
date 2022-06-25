@@ -1,6 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
+
+@app.errorhandler(404)
+def paginaNoEncontrada(e):
+    return '¡Lo siento! No hay respuesta. Inténtalo otra vez.'
 
 @app.route('/')
 def Hola():
@@ -10,7 +14,7 @@ def Hola():
 def dojo():
     return '¡Dojo!'
 
-@app.route('/say/<nombre>')
+@app.route('/say/<string:nombre>')
 def say(nombre):
     return f'¡Hola, {nombre.capitalize()}!' 
 
