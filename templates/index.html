@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla HTML</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+</head>
+<body>
+    <h1>Tabla HTML</h1>
+    <table class="table table-dark table-striped">
+        <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nombre Completo</th>
+        </thead>
+        <tbody>
+            {% for usuario in listaUsuarios %}
+            <tr>
+                <td>{{usuario['nombre']}}</td>
+                <td>{{usuario['apellido']}}</td>
+                <td>{{usuario['nombre']}}  {{usuario['apellido']}}</td>
+            </tr>    
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
