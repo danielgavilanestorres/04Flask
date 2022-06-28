@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Numeros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>WELCOME TO THE GREAT NUMBER GAME</h1>
+        <h3>I am thinking of a number between 1 and 100</h3>
+
+        {% if session['resultado'] == "Nuevo" %}
+        <label class="resul" for="resultado" name="resultado" style="background-color: #275cce; color: #fabf0a;">
+            Tu Pierdes
+            <form action="/nuevoJuego" method="post">
+                <input type="submit" value="Play Again">
+            </form>
+        </label>
+        {% endif %}
+
+        {% if session['resultado'] == "Ganaste" %}
+        <label class="resul" for="resultado" name="resultado" style="background-color: #28a743; color: #fabf0a;">
+            You Guessed It! The number was {{ session['numero'] }}
+            <form action="/nuevoJuego" method="post">
+                <input type="submit" value="Play Again">
+            </form>
+        </label>
+        {% endif %}
+
+        {% if session['resultado'] == "Muy Alto" %}
+        <label class="resul" for="resultado" name="resultado" style="background-color: #db3544; color: #fabf0a;" >Too High!!</label>
+        {% endif %}
+
+        {% if session['resultado'] == "Muy Bajo" %}
+        <label class="resul" for="resultado" name="resultado" style="background-color: #db3544; color: #fabf0a;">Too Low!!</label>
+        {% endif %}
+        
+        <form class="recuadro" action="/numeroElegido" method="post">
+            <label for="adivina">Take a guess!!!</label>
+            <p></p>
+            <input class="texto" type="text" name="adivinaText" id="">
+            <p></p>
+            <input class="boton" type="submit" value="Guess">
+            <p></p>
+            <label for="">Intentos: {{ session['contador'] }}</label>
+        </form>
+    </div>
+</body>
+
+</html>
