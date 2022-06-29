@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title" style="color: #f7bb0b;">Dojo Survey</h5>
+                <form action="/registroUsuario" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name: </label>
+                        <input type="text" name="nombreTxt" id="" class="form-control" >
+                    </div>
+                    <div class="dropdown">
+                        <label for="name" class="form-label" style="padding: 0.375rem 0rem 0.375rem 0rem;">Dojo Location: </label>
+                        <br>
+                        <select name="location" id="location" class="btn btn-secondary dropdown-toggle" >
+                            <option value="Chicago">Chicago</option>
+                            <option value="Seatle">Seattle</option>
+                            <option value="Online">Online</option>
+                            <option value="Burbank">Burbank</option>
+                            <option value="Bellevue">Bellevue</option>
+                        </select>
+                    </div>
+                    <div class="dropdown" style="padding: 0.375rem 0rem 0.375rem 0rem;">
+                        <label for="name" class="form-label" style="padding: 0.375rem 0rem 0.375rem 0rem;">Favorite Lenguage: </label>
+                        <br>
+                        <select name="lenguage" id="location" class="btn btn-secondary dropdown-toggle" >
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Python">Python</option>
+                            <option value="C#">C#</option>
+                        </select>
+                    </div>
+                    <div class="form-floating">
+                        <label for="name" class="form-label" style="padding: 0.375rem 0rem 0.375rem 0rem;">Comments: </label>
+                        <br>
+                        <textarea name = "comentario" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Comments</label>
+                      </div>
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
