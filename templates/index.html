@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Money</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 30px; margin-left: 8px;">
+            <label for="name" class="form-label">Your Gold: </label>
+            <input type="text" name="yourGold" class="form-control" style="width: 200px; margin-left: 10px;"
+                value="{{ session['scoreGold'] }}">
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <form action="/process_money" method="post">
+                        <div class="card-header">Farm</div>
+                        <div class="card-body">
+                            <input type="hidden" name="building" value="Farm">
+                            <input type="submit" value="Find Gold!" class="btn btn-primary">
+                            <p class="card-text">(earns 10 - 20 golds)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <form action="/process_money" method="post">
+                        <div class="card-header">Cave</div>
+                        <div class="card-body">
+                            <input type="hidden" name="building" value="Cave">
+                            <input type="submit" value="Find Gold!" class="btn btn-primary">
+                            <p class="card-text">(earns 5 - 10 golds)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <form action="/process_money" method="post">
+                        <div class="card-header">House</div>
+                        <div class="card-body">
+                            <input type="hidden" name="building" value="House">
+                            <input type="submit" value="Find Gold!" class="btn btn-primary">
+                            <p class="card-text">(earns 2 - 5 golds)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <form action="/process_money" method="post">
+                        <div class="card-header">Casino</div>
+                        <div class="card-body">
+                            <input type="hidden" name="building" value="Casino">
+                            <input type="submit" value="Find Gold!" class="btn btn-primary">
+                            <p class="card-text">(earns 0 - 50 golds)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 30px; margin-left: 8px;">
+            <label for="name" class="form-label">Activities:</label>
+            <br>
+            <ul class="list-group list-group-flush">
+                {% for acti in session['act'] %}
+                {% if acti[1] == "Farm" or acti[1] == "Cave" or acti[1] == "House"%}
+                <li class="list-group-item" style="color: green; font-size: 0.7rem;">
+                    Earned {{ acti[0] }} golds from the {{ acti[1] }}! ({{ acti[2] }})
+                </li>
+                {% else %}
+                <li class="list-group-item" style="color: red; font-size: 0.7rem;">
+                    Earned {{ acti[0] }} golds from the {{ acti[1] }}! ({{ acti[2] }})
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <form action="/nuevoJuego">
+            <input type="submit" value="Nuevo Juego">
+        </form>
+    </div>
+</body>
+
+</html>
